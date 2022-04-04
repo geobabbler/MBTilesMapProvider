@@ -77,7 +77,7 @@ namespace GMap.NET.MapProviders
     
     public class MBTilesMapProvider : MBTilesMapProviderBase
     {
-        internal static PureImageProxy ImageProxy;
+        public static GMapImageProxy ImageProxy = GMapImageProxy.Instance;
 
         private MBTilesHelper _mbtiles = null;
 
@@ -131,7 +131,7 @@ namespace GMap.NET.MapProviders
 
             var resultImage = _mbtiles.GetTileStream(pos.X, pos.Y, zoom);
             
-                if (resultImage.Length > 0)
+                if (resultImage!= null && resultImage.Length > 0)
                 {
                     //resultImage.Position = 0L;
                     retval = ImageProxy.FromArray(resultImage);
